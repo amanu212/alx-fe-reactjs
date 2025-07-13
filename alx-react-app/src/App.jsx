@@ -1,3 +1,4 @@
+import UserProfile from './components/UserProfile';
 import Header from './components/Header';
 import MainContent from './components/MainContent';
 import Footer from './components/Footer';
@@ -22,9 +23,14 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <Header />
-      <WelcomeMessage />
-      <MainContent />
-      <Footer />
+    <WelcomeMessage />
+    <MainContent />
+    <UserProfile 
+        name="Alice" 
+        age="25" 
+        bio="Loves hiking and photography" 
+    />
+    <Footer />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
