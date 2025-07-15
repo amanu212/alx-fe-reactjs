@@ -5,7 +5,7 @@ import MainContent from './components/MainContent';
 import WelcomeMessage from './components/WelcomeMessage';
 import ProfilePage from './components/ProfilePage';
 import Counter from './components/Counter';
-import UserContext from './UserContext';
+import UserContext from './components/UserContext';
 import './App.css';
 
 function App() {
