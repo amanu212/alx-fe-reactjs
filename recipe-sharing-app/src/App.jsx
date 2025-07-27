@@ -6,7 +6,7 @@ import RecipeDetails from './components/RecipeDetails';
 
 function App() {
   return (
-    <Routes>
+    <Router>
       <Route
         path="/"
         element={
@@ -18,7 +18,7 @@ function App() {
         }
       />
       <Route path="/recipe/:id" element={<RecipeDetails />} />
-    </Routes>
+    </Router>
   );
 }
 
