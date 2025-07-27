@@ -73,6 +73,7 @@ const useRecipeStore = create((set) => ({
         r.title.toLowerCase().includes(state.searchTerm.toLowerCase())
       ),
     })),
+  updateRecipe: (updatedRecipe) => useRecipeStore.getState().editRecipe(updatedRecipe),
 }));
 
 
