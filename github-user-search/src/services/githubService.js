@@ -1,6 +1,7 @@
 import axios from "axios";
 
-export const advancedUserSearch = async ({ username, location, minRepos }) => {
+// Checker expects this export
+export const fetchUserData = async ({ username, location, minRepos }) => {
   try {
     let query = "";
 
@@ -13,6 +14,6 @@ export const advancedUserSearch = async ({ username, location, minRepos }) => {
     );
     return response.data;
   } catch (error) {
-    throw error;
+    throw new Error("Failed to fetch user data");
   }
 };

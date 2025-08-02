@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { advancedUserSearch } from "../services/githubService";
 import { fetchUserData } from "../services/githubService";
 
 const Search = () => {
@@ -17,62 +16,56 @@ const Search = () => {
     setUsers([]);
 
     try {
-      const data = await advancedUserSearch({ username, location, minRepos });
-      setUsers(data.items || []); // GitHub search API returns { items: [...] }
+      const data = await fetchUserData({ username, location, minRepos });
+      setUsers(data.items); // search API returns { total_count, items: [...] }
     } catch (err) {
-      setError("Looks like we cant find the user");
+      setError("Looks like we can't find the user");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="text-center mt-6 px-4">
-      <form onSubmit={handleSearch} className="space-y-4">
-        <div className="flex flex-col md:flex-row justify-center gap-2">
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-            className="border p-2 rounded w-full md:w-auto"
-          />
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            placeholder="Location"
-            className="border p-2 rounded w-full md:w-auto"
-          />
-          <input
-            type="number"
-            min="0"
-            value={minRepos}
-            onChange={(e) => setMinRepos(e.target.value)}
-            placeholder="Min Repositories"
-            className="border p-2 rounded w-full md:w-auto"
-          />
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Search
-          </button>
-        </div>
+    <div className="text-center mt-6">
+      <form onSubmit={handleSearch} className="mb-6">
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          className="border p-2 rounded mr-2"
+        />
+        <input
+          type="text"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          placeholder="Location"
+          className="border p-2 rounded mr-2"
+        />
+        <input
+          type="number"
+          value={minRepos}
+          onChange={(e) => setMinRepos(e.target.value)}
+          placeholder="Min Repos"
+          className="border p-2 rounded mr-2"
+        />
+        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+          Search
+        </button>
       </form>
 
-      {loading && <p className="mt-4">Loading...</p>}
-      {error && <p className="mt-4 text-red-500">{error}</p>}
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
 
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {users.map((user) => (
-          <div key={user.id} className="bg-white p-4 rounded shadow">
+          <div key={user.id} className="border rounded p-4">
             <img
               src={user.avatar_url}
               alt={user.login}
-              className="w-20 h-20 rounded-full mx-auto"
+              className="w-16 h-16 rounded-full mx-auto"
             />
-            <h2 className="text-xl mt-2">{user.login}</h2>
+            <h3 className="text-lg mt-2">{user.login}</h3>
             <a
               href={user.html_url}
               target="_blank"
