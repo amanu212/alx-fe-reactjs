@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import UserCard from "./components/UserCard";
+import { fetchUserData } from './services/githubService';
 // Removed: import Search from './components/Search'; (not used)
 
 function App() {
