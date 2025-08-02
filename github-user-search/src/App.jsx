@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import UserCard from "./components/UserCard";
+// Removed: import Search from './components/Search'; (not used)
 
 function App() {
   const [user, setUser] = useState(null);
