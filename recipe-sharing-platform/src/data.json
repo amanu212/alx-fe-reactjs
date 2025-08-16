@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "Classic Italian pasta with eggs, cheese, pancetta, and black pepper.",
+    "image": "https://picsum.photos/seed/carbonara/800/450"
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken in a creamy spiced tomato gravy.",
+    "image": "https://picsum.photos/seed/tikka/800/450"
+  },
+  {
+    "id": 3,
+    "title": "Avocado Toast Deluxe",
+    "summary": "Sourdough with smashed avocado, lemon, chili, and optional egg.",
+    "image": "https://picsum.photos/seed/avotoast/800/450"
+  }
+]
