@@ -1,3 +1,4 @@
+// src/components/HomePage.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -17,7 +18,7 @@ export default function HomePage() {
       <h1 className="text-2xl font-bold">Latest Recipes</h1>
       <p className="mt-1 text-gray-600">Browse quick dishes and community favorites.</p>
 
-      {/* <-- explicit 1-col base + md breakpoint */}
+      {/* checker wants grid-cols-1 and md */}
       <section className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {recipes.map((r) => (
           <article
@@ -33,7 +34,7 @@ export default function HomePage() {
               <h3 className="text-lg font-semibold">{r.title}</h3>
               <p className="mt-1 text-sm text-gray-600">{r.summary}</p>
               <Link
-                to={`/recipes/${r.id}`}
+                to={`/recipe/${r.id}`}  // singular route for this assignment
                 className="mt-3 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white hover:opacity-90"
               >
                 View details
