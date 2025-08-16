@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import RecipeDetail from "./pages/RecipeDetail";
+import AddRecipe from "./pages/AddRecipe";
+import { recipes as seed } from "./data/recipes";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [recipes, setRecipes] = useState(seed);
+
+  const addRecipe = (recipe) => {
+    setRecipes((prev) => [...prev, recipe]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="min-h-screen bg-gray-50 text-gray-900">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home recipes={recipes} />} />
+        <Route path="/recipes/:id" element={<RecipeDetail recipes={recipes} />} />
+        <Route path="/add" element={<AddRecipe addRecipe={addRecipe} />} />
+        <Route path="*" element={<main className="p-8">Not found</main>} />
+      </Routes>
+    </div>
+  );
 }
-
-export default App
