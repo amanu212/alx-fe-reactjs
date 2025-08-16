@@ -5,7 +5,6 @@ export default function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    // fetch from src/data.json (path resolved relative to this file via Vite)
     const url = new URL("../data.json", import.meta.url);
     fetch(url)
       .then((r) => r.json())
@@ -18,7 +17,8 @@ export default function HomePage() {
       <h1 className="text-2xl font-bold">Latest Recipes</h1>
       <p className="mt-1 text-gray-600">Browse quick dishes and community favorites.</p>
 
-      <section className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* <-- explicit 1-col base + md breakpoint */}
+      <section className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {recipes.map((r) => (
           <article
             key={r.id}
