@@ -8,8 +8,8 @@ export default function RegistrationForm({ onSubmit }) {
 
   const validate = () => {
     const e = {};
-    if (!username.trim()) e.username = "Username is required";
-    if (!email.trim()) e.email = "Email is required";
+    if (!username) e.username = "Username is required";
+    if (!email) e.email = "Email is required";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       e.email = "Email is invalid";
     if (!password) e.password = "Password is required";
