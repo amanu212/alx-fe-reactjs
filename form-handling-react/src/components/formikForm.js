@@ -2,10 +2,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const schema = Yup.object({
-  username: Yup.string().trim().required("Username is required"),
-  email: Yup.string().email("Email is invalid").required("Email is required"),
-  password: Yup.string().min(6, "Password must be at least 6 characters")
-               .required("Password is required"),
+  username: Yup.string().required("Username is required"),
+  email: Yup.string().required("Email is required").email("Email is invalid"),
+  password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters"),
 });
 
 export default function FormikForm({ onSubmit }) {
@@ -24,25 +23,20 @@ export default function FormikForm({ onSubmit }) {
           <Form noValidate>
             <label>
               Username
-              <Field name="username" placeholder="e.g. roble_dev" />
+              <Field name="username" />
               <ErrorMessage name="username" component="span" className="error" />
             </label>
-
             <label>
               Email
-              <Field name="email" type="email" placeholder="you@example.com" />
+              <Field name="email" type="email" />
               <ErrorMessage name="email" component="span" className="error" />
             </label>
-
             <label>
               Password
-              <Field name="password" type="password" placeholder="••••••" />
+              <Field name="password" type="password" />
               <ErrorMessage name="password" component="span" className="error" />
             </label>
-
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Submitting…" : "Register"}
-            </button>
+            <button type="submit" disabled={isSubmitting}>Register</button>
           </Form>
         )}
       </Formik>
