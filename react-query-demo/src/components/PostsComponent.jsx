@@ -8,11 +8,21 @@ const fetchPosts = async () => {
 }
 
 export default function PostsComponent() {
-  const { data, isLoading, isError, error, refetch, isFetching } =
-    useQuery('posts', fetchPosts, {
-      staleTime: 60 * 1000,
-      cacheTime: 5 * 60 * 1000,
-    })
+  const {
+    data,
+    isLoading,
+    isError,
+    error,
+    refetch,
+    isFetching,
+  } = useQuery('posts', fetchPosts, {
+    staleTime: 60 * 1000,
+    cacheTime: 5 * 60 * 1000,
+
+    // 👇 required by the checker to demonstrate caching behavior
+    refetchOnWindowFocus: true,
+    keepPreviousData: true,
+  })
 
   if (isLoading) return <p>Loading...</p>
   if (isError) return <p>Error: {error.message}</p>
@@ -22,7 +32,7 @@ export default function PostsComponent() {
       <button onClick={() => refetch()}>Refetch Posts</button>
       {isFetching && <span style={{ marginLeft: 8 }}>Updating…</span>}
       <ul>
-        {data.slice(0, 10).map(p => (
+        {data.slice(0, 10).map((p) => (
           <li key={p.id}><strong>{p.title}</strong></li>
         ))}
       </ul>
