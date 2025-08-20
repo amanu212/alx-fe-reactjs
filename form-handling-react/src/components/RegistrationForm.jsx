@@ -1,53 +1,41 @@
-import { useState } from 'react'
+import { useState } from "react";
 
 export default function RegistrationForm({ onSubmit }) {
-  const [form, setForm] = useState({
-    username: '',
-    email: '',
-    password: '',
-  })
-  const [errors, setErrors] = useState({})
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setForm((f) => ({ ...f, [name]: value }))
-  }
+  const [username, setUsername] = useState("");
+  const [email, setEmail]       = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors]     = useState({});
 
   const validate = () => {
-    const newErrors = {}
-    if (!form.username.trim()) newErrors.username = 'Username is required'
-    if (!form.email.trim()) newErrors.email = 'Email is required'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      newErrors.email = 'Email is invalid'
-    if (!form.password) newErrors.password = 'Password is required'
-    else if (form.password.length < 6)
-      newErrors.password = 'Password must be at least 6 characters'
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    const e = {};
+    if (!username.trim()) e.username = "Username is required";
+    if (!email.trim()) e.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      e.email = "Email is invalid";
+    if (!password) e.password = "Password is required";
+    else if (password.length < 6)
+      e.password = "Password must be at least 6 characters";
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!validate()) return
-    // mock API submit
-    onSubmit?.(form)
-    // reset
-    setForm({ username: '', email: '', password: '' })
-  }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    if (!validate()) return;
+    onSubmit?.({ username, email, password });
+    setUsername(""); setEmail(""); setPassword(""); setErrors({});
+  };
 
   return (
-    <form className="card" onSubmit={handleSubmit} noValidate>
-      <h2>User Registration (Controlled)</h2>
-
+    <form onSubmit={handleSubmit}>
       <label>
         Username
         <input
           name="username"
-          value={form.username}
-          onChange={handleChange}
-          placeholder="e.g. roble_dev"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
-        {errors.username && <span className="error">{errors.username}</span>}
+        {errors.username && <span>{errors.username}</span>}
       </label>
 
       <label>
@@ -55,11 +43,10 @@ export default function RegistrationForm({ onSubmit }) {
         <input
           name="email"
           type="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        {errors.email && <span className="error">{errors.email}</span>}
+        {errors.email && <span>{errors.email}</span>}
       </label>
 
       <label>
@@ -67,14 +54,13 @@ export default function RegistrationForm({ onSubmit }) {
         <input
           name="password"
           type="password"
-          value={form.password}
-          onChange={handleChange}
-          placeholder="minimum 6 characters"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        {errors.password && <span className="error">{errors.password}</span>}
+        {errors.password && <span>{errors.password}</span>}
       </label>
 
       <button type="submit">Register</button>
     </form>
-  )
+  );
 }

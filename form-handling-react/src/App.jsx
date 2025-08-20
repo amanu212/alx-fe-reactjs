@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import FormikForm from "./components/formikForm";
 
 export default function RegistrationForm({ onSubmit }) {
   const [form, setForm] = useState({
