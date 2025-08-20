@@ -5,9 +5,10 @@ import Navbar from "./components/Navbar";
 
 // Original (state-driven) pages
 import Home from "./pages/Home";
-import RecipeDetail from "./pages/RecipeDetail";
+import RecipeDetail from "./components/RecipeDetail";
 import AddRecipe from "./pages/AddRecipe";
 import { recipes as seed } from "./data/recipes";
+import AddRecipeForm from "./components/AddRecipeForm";
 
 // JSON-driven pages for the new tasks
 import HomePage from "./components/HomePage";
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/" element={<Home recipes={recipes} />} />
           <Route path="/recipes/:id" element={<RecipeDetail recipes={recipes} />} />
           <Route path="/add" element={<AddRecipe addRecipe={addRecipe} />} />
+          <Route path="/add-form" element={<AddRecipeForm />} />
 
           {/* JSON-driven assignment routes */}
           <Route path="/home-json" element={<HomePage />} />
