@@ -4,11 +4,12 @@ import Navbar from './components/Navbar.jsx'
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import Login from './pages/Login.jsx'
-import Profile from './pages/Profile.jsx'
+import Profile from './components/Profile.jsx'
 import ProfileDetails from './pages/ProfileDetails.jsx'
 import ProfileSettings from './pages/ProfileSettings.jsx'
 import Post from './pages/Post.jsx'
 import ProtectedRoute from './router/ProtectedRoute.jsx'
+import BlogPost from './pages/BlogPost.jsx'
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -22,7 +23,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
           <Route path="/posts/:id" element={<Post />} />
-
+          <Route path="/blog/:id" element={<BlogPost />} />
           <Route
             path="/profile"
             element={
