@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TodoList from '../components/TodoList.jsx';
+import TodoList from './TodoList.jsx';   // ← note the ./ path since it's in the same folder
 
 describe('TodoList', () => {
   test('initial render shows demo todos', () => {
@@ -17,6 +17,7 @@ describe('TodoList', () => {
     fireEvent.change(input, { target: { value: 'New Task' } });
     fireEvent.click(addBtn);
     expect(screen.getByText('New Task')).toBeInTheDocument();
+    expect(input.value).toBe('');
   });
 
   test('toggling a todo marks it completed and back', () => {
